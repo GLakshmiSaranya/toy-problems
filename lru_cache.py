@@ -1,8 +1,8 @@
-class LRUCache(object):
+class LRUCache():
     def __init__(self, capacity):
         self.capacity = capacity
-        self.cache = {}
         self.lru = {}
+        self.cache = {}
         self.count = 0
 
     def put(self, key, value):
@@ -13,4 +13,3 @@ class LRUCache(object):
 
     def get_cache(self):
         pass
-        
