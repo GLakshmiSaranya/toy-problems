@@ -3,7 +3,19 @@
         <head>
             <title>Admin page</title>
             <style>
-                body {
+                h1 {
+                    text-align: center;
+                    color: navy;
+                }
+                table {
+                    border: 2px solid black;
+                    border-collapse: collapse;
+                    text-align: center;
+                    width: 70%;
+                }
+                th, td {
+                    border: 1px solid black;
+                    padding: 3px;
                     text-align: center;
                 }
             </style>
@@ -11,12 +23,13 @@
         <body>
             <div class = "container">
                 <div class = "jumbotron jumbotron-fluid">
-                    <h1 class = "text-center">Users details</h1>          
+                    <h1 class = "text-center">Registered users details</h1>          
                 </div>
                 <table class = "text-center">
                     <thead>
                         <tr>
-                            <th>Username</th>
+                            <th>Name</th>
+                            <th>Email</th>
                             <th>Password</th>
                             <th>Creation timestamp</th>
                         </tr>
@@ -25,8 +38,9 @@
                         {% for user in users %}
                         <tr>
                             <td>{{user.name}}</td>
-                            <td>{{user.pwd}}</td>
-                            <td>{{user.timestamp}}</td>
+                            <td>{{user.email}}</td>
+                            <td>{{user.password}}</td>
+                            <td>{{user.created}}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
