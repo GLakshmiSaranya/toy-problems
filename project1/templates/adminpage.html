@@ -1,50 +1,51 @@
 <!DOCTYPE html>
-    <html>
-        <head>
-            <title>Admin page</title>
-            <style>
-                h1 {
-                    text-align: center;
-                    color: navy;
-                }
-                table {
-                    border: 2px solid black;
-                    border-collapse: collapse;
-                    text-align: center;
-                    width: 70%;
-                }
-                th, td {
-                    border: 1px solid black;
-                    padding: 3px;
-                    text-align: center;
-                }
-            </style>
-        </head>
-        <body>
-            <div class = "container">
-                <div class = "jumbotron jumbotron-fluid">
-                    <h1 class = "text-center">Registered users details</h1>          
-                </div>
-                <table class = "text-center">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Password</th>
-                            <th>Creation timestamp</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for user in users %}
-                        <tr>
-                            <td>{{user.name}}</td>
-                            <td>{{user.email}}</td>
-                            <td>{{user.password}}</td>
-                            <td>{{user.created}}</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+<html>
+    <head>
+        <title>Admin page</title>
+        <style>
+            h1 {
+                text-align: center;
+                color: navy;
+            }
+            table {
+                border: 2px solid black;
+                border-collapse: collapse;
+                text-align: center;
+                width: 70%;
+            }
+            th, td {
+                border: 1px solid black;
+                padding: 3px;
+                text-align: center;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <div class = "container">
+            <div class = "jumbotron jumbotron-fluid">
+                <h1 class = "text-center">Registered users details</h1>          
             </div>
-        </body>
-    </html>
+            <table class = "text-center">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th>Creation timestamp</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>{{user.name}}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.password}}</td>
+                        <td>{{user.created}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
