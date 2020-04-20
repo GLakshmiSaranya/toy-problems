@@ -25,7 +25,7 @@ db = scoped_session(sessionmaker(bind=engine))
 
 @app.route("/")
 def index():
-    return "Welcome"
+    return "Welcome to Project1"
 
 @app.route("/register", methods = ["GET", "POST"])
 def register():
@@ -38,6 +38,7 @@ def register():
         print("Email: ", email)
         print("Time: ", created)
         user = User(name = name, email = email, password = password, created = created)
+        print("connecting to DB")
         try:
             session.add(user)
             print("Add new user")
@@ -57,15 +58,19 @@ def admin():
 def authorized():
     email = request.form.get("email")
     password = request.form.get("pwd")
+    isuser = db.query(User).get(email)
+    
+    if (isuser != None):
+        if isuser.password == password :
+            session["email"] = email
+            print("Session created")
+            return render_template("login.html", user = email)
+        else:
+            return render_template("registration.html", msg = "Invalid password")
+    else:
+        return render_template("registration.html", msg = "Invalid email")
 
-    isuser = db.query(User).filter_by(email = email)
-    if (isuser[0].email == email and isuser[0].password == password):
-        session["email"] = email
-        print("session created")
-        return render_template("msg.html", msg = "Successfully logged in")
-    return render_template("register.html", text = "Invalid email or password")
-
-@app.route("/logout")
+@app.route("/logout", methods = ["GET"])
 def logout():
     if "email" in session:  
         session.clear()
